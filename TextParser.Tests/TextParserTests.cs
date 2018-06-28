@@ -1,9 +1,5 @@
 namespace TextParser.Tests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
     using FluentAssertions;
     using Xunit;
 
@@ -180,63 +176,6 @@ namespace TextParser.Tests
             
             // assert
             result.Should().BeEquivalentTo(expected);
-        }
-    }
-
-    public class TextParser
-    {
-        private readonly Regex _word = new Regex("[A-Za-z]+(?:'[A-Za-z]+)?");
-
-        public Text Parse(string text)
-        {
-            return new Text
-                   {
-                       Sentences = text.Split(".", StringSplitOptions.RemoveEmptyEntries)
-                           .Select(s => s.Trim())
-                           .Where(s => s != string.Empty)
-                           .Select(this.SentenceObject)
-                           .ToList()
-                   };
-        }
-
-        private Sentence SentenceObject(string sentence)
-        {
-            return new Sentence
-                   {
-                       Words = sentence
-                           .FindMatches(this._word)
-                           .Select(m => m.Value)
-                           .OrderBy(w => w)
-                           .ToList()
-                   };
-        }
-    }
-
-    public static class StringExtensions
-    {
-        public static IEnumerable<Match> FindMatches(this string text, Regex regex)
-        {
-            return regex.Matches(text);
-        }
-    }
-
-    public class Sentence
-    {
-        public List<string> Words { get; set; }
-
-        public Sentence()
-        {
-            this.Words = new List<string>();
-        }
-    }
-
-    public class Text
-    {
-        public List<Sentence> Sentences { get; set; }
-
-        public Text()
-        {
-            this.Sentences = new List<Sentence>();
         }
     }
 }

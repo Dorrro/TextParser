@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextParser", "TextParser\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextParser.Tests", "TextParser.Tests\TextParser.Tests.csproj", "{29301514-07A9-4AE1-B52A-49218AC832F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextParser.Utils", "TextParser.Utils\TextParser.Utils.csproj", "{07C2A8CD-8AAF-4F25-A89C-96BE9F98BB02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{29301514-07A9-4AE1-B52A-49218AC832F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29301514-07A9-4AE1-B52A-49218AC832F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29301514-07A9-4AE1-B52A-49218AC832F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C2A8CD-8AAF-4F25-A89C-96BE9F98BB02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C2A8CD-8AAF-4F25-A89C-96BE9F98BB02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C2A8CD-8AAF-4F25-A89C-96BE9F98BB02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C2A8CD-8AAF-4F25-A89C-96BE9F98BB02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
