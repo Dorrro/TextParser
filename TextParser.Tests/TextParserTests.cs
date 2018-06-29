@@ -1,6 +1,7 @@
 namespace TextParser.Tests
 {
     using FluentAssertions;
+    using Utils.Parsers.TextParser;
     using Xunit;
 
     public class TextParserTests
@@ -131,9 +132,10 @@ namespace TextParser.Tests
 
             // act
             var result = new TextParser().Parse(text);
-            
+
             // assert
-            result.Should().BeEquivalentTo(expected);
+            result.Should()
+                .BeEquivalentTo(expected);
         }
 
         [Theory]
@@ -149,7 +151,8 @@ namespace TextParser.Tests
             var result = new TextParser().Parse(text);
 
             // assert
-            result.Should().BeEquivalentTo(expected);
+            result.Should()
+                .BeEquivalentTo(expected);
         }
 
         [Fact]
@@ -173,9 +176,10 @@ namespace TextParser.Tests
 
             // act
             var result = new TextParser().Parse(text);
-            
+
             // assert
-            result.Should().BeEquivalentTo(expected);
+            result.Should()
+                .BeEquivalentTo(expected);
         }
     }
 }
