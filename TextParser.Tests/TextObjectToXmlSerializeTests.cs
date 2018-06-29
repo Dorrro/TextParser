@@ -1,14 +1,12 @@
 ﻿namespace TextParser.Tests
 {
-    using System.IO;
-    using System.Text;
-    using System.Xml;
     using System.Xml.Serialization;
     using FluentAssertions;
     using Utils.Parsers.TextParser;
+    using Utils.Serializers;
     using Xunit;
 
-    public class TextSerializerToXmlTests
+    public class TextObjectToXmlSerializeTests
     {
         [Fact]
         public void When_SerializingSimpleSentenceToXml_Should_SerializeToXmlWithOnlyOneSentenceNodes()
@@ -43,9 +41,7 @@
 </text>";
 
             // act
-            var xmlSerializerNamespaces = new XmlSerializerNamespaces();
-            xmlSerializerNamespaces.Add("", "");
-            var result = new TextSerializer().ToXml(text, xmlSerializerNamespaces);
+            var result = new TextObjectToXml().Serialize(text);
 
             // assert
             result.Should()
@@ -123,37 +119,11 @@
 </text>";
 
             // act
-            var xmlSerializerNamespaces = new XmlSerializerNamespaces();
-            xmlSerializerNamespaces.Add("", "");
-            var result = new TextSerializer().ToXml(text, xmlSerializerNamespaces);
+            var result = new TextObjectToXml().Serialize(text);
 
             // assert
             result.Should()
                 .Be(expectedXml);
-        }
-    }
-
-    public class TextSerializer
-    {
-        public string ToXml<T>(T objectToSerialize, XmlSerializerNamespaces xmlSerializerNamespaces)
-        {
-            var xmlSerializer = new XmlSerializer(typeof(T));
-            using (var stream = new Utf8StringWriter())
-            {
-                using (var xmlWriter = XmlWriter.Create(stream, new XmlWriterSettings {Indent = true}))
-                {
-                    xmlWriter.WriteStartDocument(true);
-
-                    xmlSerializer.Serialize(xmlWriter, objectToSerialize, xmlSerializerNamespaces);
-
-                    return stream.ToString();
-                }
-            }
-        }
-
-        private class Utf8StringWriter : StringWriter
-        {
-            public override Encoding Encoding => Encoding.UTF8;
         }
     }
 }
