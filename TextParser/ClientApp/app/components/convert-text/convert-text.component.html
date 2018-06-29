@@ -1,9 +1,31 @@
-<h1>Counter</h1>
+<div class="page-header">
+    <h1>Convert Text</h1>
+</div>
 
-<p>This is a simple example of an Angular component.</p>
-
-<textarea [(ngModel)]='vm.textToConvert'></textarea>
-<button (click)="toXml()">To XML</button>
-<button (click)="toCsv()">To CSV</button>
-<textarea>{{ vm.convertedText }}</textarea>
-
+<div *ngIf="vm.errorOccured" class="alert alert-danger" role="alert">
+    <strong>Error:</strong> The text could not be converted due to the unknown error. Please try again later.
+</div>
+<div class="row">
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label for="textToConvert">Text to convert:</label>
+            <textarea rows="10" [(ngModel)]="vm.textToConvert" class="form-control" id="textToConvert"></textarea>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <label>Action:</label>
+        <div class="row" *ngIf="!vm.isLoading">
+            <div class="col-sm-2 col-lg-12"><button (click)="toXml()" class="btn btn-lg btn-primary">To XML</button></div>
+            <div class="col-sm-2 col-lg-12"><button (click)="toCsv()" class="btn btn-lg btn-primary">To CSV</button></div>
+        </div>
+        <div class="row" *ngIf="vm.isLoading">
+            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label for="convertedText">Converted text:</label>
+            <textarea rows="10" class="form-control" id="convertedText" readonly="readonly">{{ vm.convertedText }}</textarea>
+        </div>
+    </div>
+</div>

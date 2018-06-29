@@ -3,12 +3,15 @@ import { Http, Headers } from "@angular/http";
 
 @Component({
     selector: "convert-text",
-    templateUrl: "./convert-text.component.html"
+    templateUrl: "./convert-text.component.html",
+    styleUrls: ["./convert-text.component.css"]
 })
 export class ConvertTextComponent {
-    public vm: ConvertTextComponent = this;
+    public vm = this;
     public textToConvert: string = "";
     public convertedText = "";
+    public errorOccured = false;
+    public isLoading = false;
 
     private http: Http;
     private baseApiUrl: string;
@@ -18,15 +21,17 @@ export class ConvertTextComponent {
         this.baseApiUrl = "http://localhost:11932/api/Text/";
     }
 
-    public toXml() {
+    public toXml(): void {
         this.serializeText("ToXml");
     }
 
-    public toCsv() {
+    public toCsv(): void {
         this.serializeText("ToCsv");
     }
 
-    private serializeText(type: string) {
+    private serializeText(type: string): void {
+        this.errorOccured = false;
+        this.isLoading = true;
         const headers = new Headers({ 'Content-Type': "text/json" });
 
         this.http.post(
@@ -36,9 +41,15 @@ export class ConvertTextComponent {
                     headers: headers
                 }
             )
-            .subscribe(result => {
+            .subscribe(
+                result => {
                     this.convertedText = result.text();
+                    this.isLoading = false;
                 },
-                error => console.error(error));
+                error => {
+                    console.error(error);
+                    this.errorOccured = true;
+                    this.isLoading = false;
+                });
     }
 }
