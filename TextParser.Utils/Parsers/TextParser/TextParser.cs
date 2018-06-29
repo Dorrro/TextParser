@@ -3,7 +3,7 @@ namespace TextParser.Utils.Parsers.TextParser
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using Utils.Extensions;
+    using Extensions;
 
     public class TextParser
     {
