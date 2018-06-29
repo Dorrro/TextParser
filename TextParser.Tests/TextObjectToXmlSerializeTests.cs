@@ -1,6 +1,5 @@
 ﻿namespace TextParser.Tests
 {
-    using System.Xml.Serialization;
     using FluentAssertions;
     using Utils.Parsers.TextParser;
     using Utils.Serializers;

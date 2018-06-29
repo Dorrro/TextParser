@@ -30,10 +30,7 @@
                                                           });
                                    });
 
-            services.AddCors(options =>
-                             {
-                                 options.AddPolicy(CorsPolcies.AllowAllOrigins, this.GenerateCorsPolicy());
-                             });
+            services.AddCors(options => { options.AddPolicy(CorsPolicies.AllowAllOrigins, this.GenerateCorsPolicy()); });
         }
 
         public CorsPolicy GenerateCorsPolicy()
@@ -62,10 +59,5 @@
                              });
             app.UseMvcWithDefaultRoute();
         }
-    }
-
-    public class CorsPolcies
-    {
-        public const string AllowAllOrigins = "AllowAllOrigins";
     }
 }

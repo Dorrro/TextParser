@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace TextParser.API.Controllers
+﻿namespace TextParser.API.Controllers
 {
     using Microsoft.AspNetCore.Cors;
+    using Microsoft.AspNetCore.Mvc;
     using Models;
     using Utils.Parsers.TextParser;
     using Utils.Serializers;
 
-    [EnableCors(CorsPolcies.AllowAllOrigins)]
+    [EnableCors(CorsPolicies.AllowAllOrigins)]
     [Route("api/[controller]")]
     public class TextController : ControllerBase
     {
