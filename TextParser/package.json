@@ -1,5 +1,5 @@
 {
-  "name": "TextParser",
+  "name": "textparser",
   "private": true,
   "version": "0.0.0",
   "scripts": {

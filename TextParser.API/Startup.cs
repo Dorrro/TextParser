@@ -1,6 +1,7 @@
 ﻿namespace TextParser.API
 {
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Cors.Infrastructure;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,21 @@
                                                               Version = "v1"
                                                           });
                                    });
+
+            services.AddCors(options =>
+                             {
+                                 options.AddPolicy(CorsPolcies.AllowAllOrigins, this.GenerateCorsPolicy());
+                             });
+        }
+
+        public CorsPolicy GenerateCorsPolicy()
+        {
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin();
+            corsBuilder.AllowCredentials();
+            return corsBuilder.Build();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,5 +62,10 @@
                              });
             app.UseMvcWithDefaultRoute();
         }
+    }
+
+    public class CorsPolcies
+    {
+        public const string AllowAllOrigins = "AllowAllOrigins";
     }
 }
