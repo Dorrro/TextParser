@@ -11,6 +11,11 @@
     {
         public string Serialize(Text text)
         {
+            if (!text.Sentences.Any())
+            {
+                return string.Empty;
+            }
+
             var maxNumberOfWords = text
                 .Sentences
                 .Select(s => s.Words.Count)

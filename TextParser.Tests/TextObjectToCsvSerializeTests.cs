@@ -95,5 +95,20 @@ Sentence 3, Cinderella, likes, shoes";
             result.Should()
                 .Be(expectedCsv);
         }
+
+        [Fact]
+        public void When_SerializingEmptyObjectToCsv_Should_ReturnEmptyString()
+        {
+            // arrange
+            var text = new Text();
+            var expectedCsv = @"";
+
+            // act
+            var result = new TextObjectToCsv().Serialize(text);
+
+            // assert
+            result.Should()
+                .Be(expectedCsv);
+        }
     }
 }

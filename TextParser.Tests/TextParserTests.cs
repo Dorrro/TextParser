@@ -30,7 +30,7 @@ namespace TextParser.Tests
                            };
 
             // act
-            var result = new TextParser().Parse(text);
+            var result = TextParser.Parse(text);
 
             // assert
             result.Should()
@@ -72,7 +72,8 @@ namespace TextParser.Tests
                            };
 
             // act
-            var result = new TextParser().Parse(text);
+            var result = TextParser
+                .Parse(text);
 
             // assert
             result.Should()
@@ -131,7 +132,7 @@ namespace TextParser.Tests
                            };
 
             // act
-            var result = new TextParser().Parse(text);
+            var result = TextParser.Parse(text);
 
             // assert
             result.Should()
@@ -139,6 +140,7 @@ namespace TextParser.Tests
         }
 
         [Theory]
+        [InlineData(null)]
         [InlineData("")]
         [InlineData("       ")]
         [InlineData("     \n  ")]
@@ -148,7 +150,7 @@ namespace TextParser.Tests
             var expected = new Text();
 
             // act
-            var result = new TextParser().Parse(text);
+            var result = TextParser.Parse(text);
 
             // assert
             result.Should()
@@ -175,7 +177,7 @@ namespace TextParser.Tests
                            };
 
             // act
-            var result = new TextParser().Parse(text);
+            var result = TextParser.Parse(text);
 
             // assert
             result.Should()
